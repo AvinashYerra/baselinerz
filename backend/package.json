@@ -1,19 +1,15 @@
 {
-  "name": "web-feature-analyzer-backend",
+  "name": "css-feature-scanner",
   "version": "1.0.0",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "@babel/parser": "^7.28.4",
-    "@mdn/browser-compat-data": "^7.1.9",
     "express": "^4.18.2",
-    "glob": "^11.0.3",
     "node-fetch": "^3.3.2",
-    "postcss": "^8.5.6",
-    "rehype-parse": "^9.0.0",
-    "unzipper": "^0.10.11"
-  },
-  "type": "module"
+    "postcss": "^8.4.36",
+    "web-features": "^1.0.0"
+  }
 }

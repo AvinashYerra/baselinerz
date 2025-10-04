@@ -1,17 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Web Feature Analyzer</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>CSS Feature Scanner</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>GitHub Web Feature Analyzer</h1>
-  <input id="repoUrl" type="text" placeholder="Enter GitHub repo URL" size="50"/>
-  <button id="scanBtn">Scan</button>
+    <div class="container">
+        <h1>CSS Feature Scanner</h1>
+        <form id="repoForm">
+            <input type="text" id="repoUrl" placeholder="Enter GitHub Repo URL" required />
+            <button type="submit">Scan</button>
+        </form>
+        <div id="results">
+            <h2>Results:</h2>
+            <div>
+                <h3>✅ Widely Available</h3>
+                <ul id="widely"></ul>
+            </div>
+            <div>
+                <h3>⚠️ Limited</h3>
+                <ul id="limited"></ul>
+            </div>
+            <div>
+                <h3>🌟 Newly Available</h3>
+                <ul id="newly"></ul>
+            </div>
+        </div>
+    </div>
 
-  <div id="score"></div>
-  <table id="results"></table>
 
-  <script src="script.js"></script>
+<script>
+const form = document.getElementById('repoForm');
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const url = document.getElementById('repoUrl').value;
+
+    const res = await fetch('/scan', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ url })
+    });
+
+    const data = await res.json();
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+
+    for(const file in data){
+        const counts = data[file];
+        resultsDiv.innerHTML += `
+            <h3>${file}</h3>
+            <ul>
+                <li>✅ Widely available: ${counts.widely}</li>
+                <li>⚠️ Limited: ${counts.limited}</li>
+                <li>🌟 Newly available: ${counts.newly}</li>
+            </ul>
+        `;
+    }
+});
+</script>
+
 </body>
 </html>

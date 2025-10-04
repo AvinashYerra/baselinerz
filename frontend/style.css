@@ -1,5 +1,35 @@
-body { font-family: sans-serif; background: #fff; color: #000; padding: 20px; }
-input, button { margin: 5px 0; padding: 5px; }
-table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-th, td { border: 1px solid #000; padding: 8px; text-align: left; }
-th { background: #eee; }
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f2f2f2;
+}
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+h1 {
+    text-align: center;
+}
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+input {
+    flex: 1;
+    padding: 10px;
+}
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+ul li {
+    padding: 3px 0;
+}
